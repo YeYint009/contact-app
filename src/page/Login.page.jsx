@@ -7,27 +7,42 @@ import {
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const handlerInputChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <ContainerComponent>
-      <div className="flex justify-center items-center h-screen">
+      <div className="Center">
         <div className=" w-2/6 h-auto">
-          <h1 className=" font-serif text-2xl text-center">
+          <h1 className=" font-serif text-4xl text-center mb-10">
             Login Your Contact
           </h1>
-          <form className=" space-y-7 mt-5">
+          <form className=" space-y-7 mt-5" onSubmit={handlerSubmit}>
             <FormComponent
-              name={"Email"}
+              value={formData.email}
+              onChange={handlerInputChange}
+              name={"email"}
               type={"email"}
               label={"Enter Your Email"}
               placeholder="example@gmail.com"
             />
             <FormComponent
-              name={"Password"}
-              type={"password"}
+              value={formData.password}
+              onChange={handlerInputChange}
+              name={"password"}
+              type={"number"}
               label={"Password"}
               placeholder="8-digits"
             />
-            <ButtonComponent type={"submit"} />
+            <ButtonComponent type={"submit"} style={"!rounded-lg"} >
+              Login
+            </ButtonComponent>
           </form>
         </div>
       </div>
